@@ -7,15 +7,14 @@ public class Main {
         validateCredentials("login", "pass", "pass^&");
 
 
-
     }
 
     public static boolean validateCredentials(String login, String password, String repeatPassword) {
         try {
             checkLogin(login);
-            checkPassword(password,repeatPassword);
+            checkPassword(password, repeatPassword);
             return true;
-        } catch (WrongLoginException e){
+        } catch (WrongLoginException e) {
             System.out.println("Invalid login: " + e.getMessage());
             return false;
         } catch (WrongPasswordException e) {
@@ -30,6 +29,7 @@ public class Main {
             throw new WrongLoginException("Login is wrong");
         }
     }
+
     private static void checkPassword(String password, String repeatPassword) {
         if (hasLengthMoreThen(password, 20) || isNoneAlphanumeric(password) || stringNotEquals(password, repeatPassword)) {
             throw new WrongPasswordException("Password is wrong");
@@ -39,6 +39,7 @@ public class Main {
     private static boolean stringNotEquals(String value, String value2) {
         return !value.equals(value2);
     }
+
     private static boolean isNoneAlphanumeric(String string) {
         final String alphabet = "abcdefghijclmnopqrstuvwxyz123456789_";
         for (int i = 0; i < string.length(); i++) {
